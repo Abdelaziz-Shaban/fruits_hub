@@ -79,4 +79,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'fruits-hub-db083.firebasestorage.app',
     measurementId: 'G-YBY3CE67MD',
   );
+
 }

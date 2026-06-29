@@ -20,6 +20,11 @@ dependencies:
     sdk: flutter
   shared_preferences: ^2.5.5
   firebase_core: ^4.9.0
+  dartz: ^0.10.1
+  firebase_auth: ^6.5.2
+  flutter_bloc: ^9.1.1
+  get_it: ^9.2.1
+  modal_progress_hud_nsn: ^0.5.1
 
 dev_dependencies:
   flutter_launcher_icons: ^0.14.4

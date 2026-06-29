@@ -6,10 +6,12 @@ import 'package:fruit_hub/core/utils/constants.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 
 class TermsAndConditionsWidgets extends StatefulWidget {
-  const TermsAndConditionsWidgets({super.key});
+  const TermsAndConditionsWidgets({super.key, required this.onChanged});
+  final ValueChanged<bool> onChanged;
 
   @override
-  State<TermsAndConditionsWidgets> createState() => _TermsAndConditionsWidgetsState();
+  State<TermsAndConditionsWidgets> createState() =>
+      _TermsAndConditionsWidgetsState();
 }
 
 class _TermsAndConditionsWidgetsState extends State<TermsAndConditionsWidgets> {
@@ -21,19 +23,25 @@ class _TermsAndConditionsWidgetsState extends State<TermsAndConditionsWidgets> {
       offset: const Offset(14, 0),
       child: Row(
         children: [
-
-          Checkbox(value: isAccepted, onChanged: (value) {
-            setState(() {
+          Checkbox(
+            value: isAccepted,
+            onChanged: (value) {
               isAccepted = value ?? false;
-            });
-          },
+              widget.onChanged(value!);
+              setState(() {
+
+
+              });
+            },
             side: const BorderSide(color: Color(0xffDDDFDF), width: 1.5),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(6), // الكيرف الخفيف اللي في الصورة
+              borderRadius: BorderRadius.circular(
+                6,
+              ), // الكيرف الخفيف اللي في الصورة
             ),
-            activeColor:  AppColors.primaryColor, // اللون الأخضر بتاع الأبلكيشن عند ال
+            activeColor:
+                AppColors.primaryColor, // اللون الأخضر بتاع الأبلكيشن عند ال
           ),
-
 
           Expanded(
             child: Text.rich(
