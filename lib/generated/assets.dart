@@ -13,44 +13,34 @@ class $AssetsImagesGen {
   const $AssetsImagesGen();
 
   final AssetGenImage appLogo = const AssetGenImage(
-    'assets/images/app_logo.png',
-  );
+      'assets/images/app_logo.png');
   final SvgGenImage appleIcon = const SvgGenImage(
-    'assets/images/apple_icon.svg',
-  );
+      'assets/images/apple_icon.svg');
   final SvgGenImage facebookIcon = const SvgGenImage(
-    'assets/images/facebook_icon.svg',
-  );
+      'assets/images/facebook_icon.svg');
   final SvgGenImage googleIcon = const SvgGenImage(
-    'assets/images/google_icon.svg',
-  );
+      'assets/images/google_icon.svg');
   final SvgGenImage onBoardingBG = const SvgGenImage(
-    'assets/images/on_boarding_BG.svg',
-  );
+      'assets/images/on_boarding_BG.svg');
   final SvgGenImage onBoardingBG2 = const SvgGenImage(
-    'assets/images/on_boarding_BG2.svg',
-  );
+      'assets/images/on_boarding_BG2.svg');
   final AssetGenImage onBoardingPageViewImage1 = const AssetGenImage(
-    'assets/images/on_boarding_page_view_image_1.png',
-  );
+      'assets/images/on_boarding_page_view_image_1.png');
   final AssetGenImage onBoardingPageViewImage2 = const AssetGenImage(
-    'assets/images/on_boarding_page_view_image_2.png',
-  );
+      'assets/images/on_boarding_page_view_image_2.png');
   final AssetGenImage splashBottom = const AssetGenImage(
-    'assets/images/splash_bottom.png',
-  );
+      'assets/images/splash_bottom.png');
   final AssetGenImage splashLogo = const AssetGenImage(
-    'assets/images/splash_logo.png',
-  );
+      'assets/images/splash_logo.png');
   final AssetGenImage splashPlan = const AssetGenImage(
-    'assets/images/splash_plan.png',
-  );
+      'assets/images/splash_plan.png');
 }
 
 class AssetGenImage {
   const AssetGenImage(this._assetName, {this.size, this.flavors = const {}});
 
   final String _assetName;
+
 
   final Size? size;
   final Set<String> flavors;
@@ -108,8 +98,15 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider({AssetBundle? bundle, String? package}) {
-    return AssetImage(_assetName, bundle: bundle, package: package);
+  ImageProvider provider({
+    AssetBundle? bundle,
+    String? package,
+  }) {
+    return AssetImage(
+      _assetName,
+      bundle: bundle,
+      package: package,
+    );
   }
 
   Widget custom({
@@ -187,3 +184,4 @@ class SvgGenImage {
 
   String get keyName => _assetName;
 }
+

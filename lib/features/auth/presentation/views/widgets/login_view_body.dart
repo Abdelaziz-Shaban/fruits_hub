@@ -1,3 +1,5 @@
+import 'dart:io' show Platform;
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,9 +23,10 @@ class LoginViewBody extends StatefulWidget {
   @override
   State<LoginViewBody> createState() => _LoginViewBodyState();
 }
+
 final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-late String email,password;
+late String email, password;
 
 class _LoginViewBodyState extends State<LoginViewBody> {
   @override
@@ -39,8 +42,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               SizedBox(height: 24),
 
               CustomTextFormField(
-                onSaved: (value){
-                  email=value!;
+                onSaved: (value) {
+                  email = value!;
                 },
                 title: 'البريد الالكتروني',
                 textInputType: TextInputType.emailAddress,
@@ -49,8 +52,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               SizedBox(height: 16),
 
               PasswordField(
-                onSaved: (value){
-                  password=value!;
+                onSaved: (value) {
+                  password = value!;
                 },
               ),
 
@@ -71,28 +74,28 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               SizedBox(height: 33),
 
               CustomBotton(
-                  onPressed: () {
-                    if(formKey.currentState!.validate()){
-                      formKey.currentState!.save();
+                onPressed: () {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
 
-                      context.read<LoginCubit>().loginUser(email, password);
-
-                    }else{
-                      autovalidateMode=AutovalidateMode.always;
-                      setState(() {
-
-                      });
-                    }
-                  },
-                  text: "تسجيل دخول"
+                    context.read<LoginCubit>().loginUser(email, password);
+                  } else {
+                    autovalidateMode = AutovalidateMode.always;
+                    setState(() {});
+                  }
+                },
+                text: "تسجيل دخول",
               ),
 
               SizedBox(height: 33),
 
-              Center(child:  DontHaveAnAccountWidget(onPressed: () {
-                Navigator.pushNamed(context, AppRoutesName.signupView);
-
-              },)),
+              Center(
+                child: DontHaveAnAccountWidget(
+                  onPressed: () {
+                    Navigator.pushNamed(context, AppRoutesName.signupView);
+                  },
+                ),
+              ),
 
               SizedBox(height: 33),
 
@@ -103,23 +106,26 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               SocialLoginBotton(
                 title: 'تسجيل بواسطة جوجل',
                 image: AppAssets.googleIcon,
-                onPressed: () {},
+                onPressed: () {
+                  context.read<LoginCubit>().signInWithGoogle();
+                },
               ),
 
-              SizedBox(height: 16),
 
-              SocialLoginBotton(
-                title: 'تسجيل بواسطة أبل',
-                image: AppAssets.appleIcon,
-                onPressed: () {},
-              ),
-
-              SizedBox(height: 16),
+              Platform.isIOS
+                  ? SocialLoginBotton(
+                      title: 'تسجيل بواسطة أبل',
+                      image: AppAssets.appleIcon,
+                      onPressed: () {},
+                    )
+                  : SizedBox(height: 16),
 
               SocialLoginBotton(
                 title: 'تسجيل بواسطة فيسبوك',
                 image: AppAssets.facebookIcon,
-                onPressed: () {},
+                onPressed: () {
+                  context.read<LoginCubit>().signInWithFacebook();
+                },
               ),
             ],
           ),

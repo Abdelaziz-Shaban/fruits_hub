@@ -16,16 +16,16 @@ class LoginViewBodyBlocConsumer extends StatelessWidget {
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
         if (state is LoginSuccess) {
-          // ScaffoldMessenger.of(context).showSnackBar(
-          //   const SnackBar(
-          //     content: Text(
-          //       'تم إنشاء الحساب بنجاح! 🎉',
-          //       style: TextStyle(fontFamily: 'Cairo'),
-          //     ),
-          //     backgroundColor: Colors.green,
-          //     behavior: SnackBarBehavior.floating,
-          //   ),
-          //);
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text(
+                'أهلاً بك في fruits hub! تم تسجيل الدخول بنجاح 🍏✨',
+                style: TextStyle(fontFamily: 'Cairo'),
+              ),
+              backgroundColor: Colors.green,
+              behavior: SnackBarBehavior.floating,
+            ),
+          );
         }
 
         if (state is LoginFailure) {
